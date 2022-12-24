@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import type{ NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../db/client";
 const bcrypt = require("bcryptjs");
 

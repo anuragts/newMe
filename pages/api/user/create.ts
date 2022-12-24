@@ -29,6 +29,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         password: hashedPassword,
       },
     });
-    res.status(200).json(user);
+    res.status(201).json(user);
   }
 }
