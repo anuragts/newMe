@@ -13,7 +13,7 @@ export default async function create(
   if (!title || !description || !userId) {
     return res.status(400).json({ message: "Missing some fields" });
   } else {
-    const userIdInt = parseInt(userId);
+    const userIdInt:number = parseInt(userId);
     const resolution = await prisma.resolution.create({
       data: {
         title,
