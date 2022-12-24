@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
   const { name, email, password, password2 } = req.body;
-  const exists = prisma.user.findMany({ where: { email } });
+  const exists: Promise<Array<{ id: number }>> = prisma.user.findMany({ where: { email } });
   if (!name || !email || !password || !password2) {
     res.status(400).json("Please enter all fields");
   } else if ((await exists).length > 0) {
