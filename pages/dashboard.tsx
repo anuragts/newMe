@@ -5,7 +5,7 @@ import getId from "./getId";
 export default function dashboard() {
   const router = useRouter();
   const id = getId();
-  if (id=="") {
+  if (id=="" || id=="null") {
     router.push("/login");
   }
   

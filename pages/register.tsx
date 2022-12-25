@@ -10,7 +10,7 @@ export default function register() {
   const [error, setError] = useState(null);
   const router = useRouter();
   const id = getId();
-  if (id) {
+  if (id && id !== "null") {
     router.push("/dashboard");
   }
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {

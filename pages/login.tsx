@@ -8,7 +8,7 @@ export default function Login() {
 
   const [data, setData] = useState([]);
   const id = getId();
-  if (id) {
+  if (id && id !== "null") {
     router.push("/dashboard");
   }
   const handleSubmit = async (e: any) => {
