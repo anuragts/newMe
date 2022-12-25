@@ -22,8 +22,9 @@ import { Input, Button } from "@nextui-org/react";
     });
     const result = await response.json();
 
-    if (response.status === 200) {
+    if (result) {
       console.log("success");
+      window.location.reload();
     } else {
       console.log("failed");
     }
@@ -38,6 +39,7 @@ import { Input, Button } from "@nextui-org/react";
           name="title"
           placeholder="Enter your title"
           className="my-5"
+          aria-label="title"
         />
         <br />
         <Input
@@ -47,6 +49,7 @@ import { Input, Button } from "@nextui-org/react";
           name="description"
           placeholder="Enter your description"
           className="my-5"
+          aria-label="description"
         />
         <br />
         <div className="flex justify-center my-5">
