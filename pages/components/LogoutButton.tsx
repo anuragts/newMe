@@ -1,11 +1,11 @@
-import { useRouter } from 'next/router';
-import { Button } from '@nextui-org/react';
+import { useRouter } from "next/router";
+import { Button } from "@nextui-org/react";
 
 function LogoutButton() {
   const router = useRouter();
 
   const handleLogout = () => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       localStorage.setItem("userId", "");
       router.push("/login");
     }
@@ -13,8 +13,8 @@ function LogoutButton() {
 
   return (
     <Button onClick={handleLogout} bordered color="error" size={"lg"} auto>
-    Logout
-  </Button>
+      Logout
+    </Button>
   );
 }
 

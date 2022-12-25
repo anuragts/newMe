@@ -11,7 +11,7 @@ export default function Login() {
   if (id && id !== "null") {
     router.push("/dashboard");
   }
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.target;
     const data = new FormData(form);
@@ -40,6 +40,7 @@ export default function Login() {
       router.push("/dashboard");
     } else {
       console.log("failed");
+
     }
   };
 
@@ -72,8 +73,8 @@ export default function Login() {
             Submit
           </Button>
         </div>{" "}
+        <div>{data}</div>
       </form>
-      <p>{data}</p>
     </div>
   );
 }

@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import getId from "./components/getId";
 
 export default function register() {
-  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const router = useRouter();
@@ -37,7 +36,6 @@ export default function register() {
       setError(result.error);
     } else {
       setLoading(false);
-      setData(result);
       router.push("/login");
     }
   };
