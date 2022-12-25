@@ -1,5 +1,5 @@
 import { useState } from "react";
-import getId from "./getId";
+import getId from "./components/getId";
 import { useRouter } from "next/router";
 import { Input,Button } from "@nextui-org/react";
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Input, Button } from "@nextui-org/react";
 import React from "react";
 import { useRouter } from "next/router";
-import getId from "./getId";
+import getId from "./components/getId";
 
 export default function register() {
   const [data, setData] = useState([]);
