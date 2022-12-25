@@ -12,7 +12,7 @@ const ResolutionList = () => {
   }
   const router = useRouter();
 
-  const id = getId();
+  const userId = getId();
   const [resolutions, setResolutions] = useState<Resolution[]>([]);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const ResolutionList = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId: id }),
+        body: JSON.stringify({ userId: userId }),
       });
       const data = await res.json();
       if (data) {
@@ -51,7 +51,23 @@ const ResolutionList = () => {
     }
   };
 
-  if (id == "" || id == "null") {
+  const handleCompleted = async (id: number , userId = id ) => {
+    const res = await fetch(`/api/resolution/completed/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id , userId }),
+    });
+    const data = await res.json();
+    if (data) {
+      const newResolutions = resolutions.filter((r) => r.id !== id);
+      setResolutions(newResolutions);
+      window.location.reload();
+    }
+  }
+
+  if (userId == "" || userId == "null") {
     router.push("/login");
   }
 
@@ -66,7 +82,7 @@ const ResolutionList = () => {
             </Card.Body>
             <Card.Divider />
             <Row justify="flex-end">
-            <Button color={"success"} css={{ mx: "4px" , textDecoration:"bold" }}>
+            <Button color={"success"} css={{ mx: "4px" , textDecoration:"bold" }} onPress={()=> handleCompleted(resolution.id)}>
               Completed
             </Button>
               <Button color={"error"} css={{ mx: "4px" }} onPress={() => handleDelete(resolution.id)}>

@@ -24,4 +24,5 @@ model User {
   name      String
   password  String
   resolutions Resolution[]
+  completed Int? @default(0)
 }

@@ -52,6 +52,8 @@ export default function register() {
           name="email"
           placeholder="Enter your email"
           className="my-5"
+          aria-label="email"
+
         />{" "}
         <br />
         <Input
@@ -62,6 +64,8 @@ export default function register() {
           name="name"
           placeholder="Enter your name"
           className="my-5"
+          aria-label="name"
+
         />
         <br />
         <Input.Password
@@ -72,6 +76,8 @@ export default function register() {
           name="password"
           placeholder="Enter your password "
           className="my-5"
+          aria-label="password"
+
         />
         <br />
         <Input.Password
@@ -83,6 +89,8 @@ export default function register() {
           name="password2"
           placeholder="confirm password"
           className="my-5"
+          aria-label="password2"
+
         />
         <br />
         <div className="flex justify-center my-5">

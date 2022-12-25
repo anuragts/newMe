@@ -1,7 +1,7 @@
 import { useState } from "react";
 import getId from "./components/getId";
 import { useRouter } from "next/router";
-import { Input,Button } from "@nextui-org/react";
+import { Input, Button } from "@nextui-org/react";
 
 export default function Login() {
   const router = useRouter();
@@ -40,7 +40,6 @@ export default function Login() {
       router.push("/dashboard");
     } else {
       console.log("failed");
-
     }
   };
 
@@ -57,6 +56,8 @@ export default function Login() {
           name="email"
           placeholder="Enter your email"
           className="my-5"
+          aria-label="email"
+
         />{" "}
         <br />
         <Input.Password
@@ -67,6 +68,7 @@ export default function Login() {
           name="password"
           placeholder="Enter your password "
           className="my-5"
+          aria-label="password"
         />
         <div className="flex justify-center my-5">
           <Button size="lg" type="submit">
@@ -74,9 +76,13 @@ export default function Login() {
           </Button>
         </div>{" "}
         <div className="flex justify-center my-5">
-        <Button onClick={() => router.push("/register")} color="secondary" auto>
-          Register
-        </Button>
+          <Button
+            onClick={() => router.push("/register")}
+            color="secondary"
+            auto
+          >
+            Register
+          </Button>
         </div>
         <div>{data}</div>
       </form>
