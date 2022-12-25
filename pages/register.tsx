@@ -55,60 +55,7 @@ export default function register() {
     <div>
       <h1>register</h1>
       <form onSubmit={handleSubmit} className="my-5 text-center">
-      <Grid.Container gap={4}>
-      <Grid>
         
-      </Grid>
-      <Grid>
-        <Input
-          clearable
-          helperText="Please enter your name"
-          label="Name"
-          placeholder="Enter your name"
-        />
-      </Grid>
-      <Grid>
-        <Input
-          clearable
-          color="error"
-          helperText="Required"
-          label="Error"
-          placeholder="Enter something"
-        />
-      </Grid>
-      <Grid>
-        <Input
-          clearable
-          color="success"
-          initialValue="getnextui"
-          helperText="Excelent username"
-          type="test"
-          label="Username"
-          placeholder="Enter your username"
-        />
-      </Grid>
-      <Grid>
-        <Input
-          clearable
-          color="warning"
-          helperText="Insecure password"
-          type="password"
-          label="Password"
-          placeholder="Enter your password"
-        />
-      </Grid>
-      <Grid>
-        <Input.Password
-          clearable
-          color="warning"
-          initialValue="123"
-          helperText="Insecure password"
-          type="password"
-          label="Password"
-          placeholder="Enter your password with eye"
-        />
-      </Grid>
-    </Grid.Container>
       </form>
     </div>
   );
