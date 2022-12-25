@@ -90,6 +90,11 @@ export default function register() {
             Submit
           </Button>
         </div>
+        <div className="flex justify-center my-5">
+        <Button onClick={() => router.push("/login")} color="secondary" auto>
+          Login
+        </Button>
+        </div>
       </form>
     </div>
   );

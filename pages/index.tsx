@@ -1,12 +1,10 @@
-import Head from 'next/head'
-import Image from 'next/image'
+import Head from "next/head";
+import Image from "next/image";
 import { useRouter } from "next/router";
-import { Inter } from '@next/font/google'
+import { Inter } from "@next/font/google";
 import { Button } from "@nextui-org/react";
 
-
-const inter = Inter({ subsets: ['latin'] })
-
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const router = useRouter();
@@ -20,10 +18,10 @@ export default function Home() {
       </Head>
       <div>
         <h1 className="text-4xl font-semibold ">Welcome to New Me!</h1>
-        <Button onClick={()=>router.push('/register')} color="primary" auto>
-        Create user
+        <Button onClick={() => router.push("/login")} color="primary" auto>
+          Login
         </Button>
       </div>
     </>
-  )
+  );
 }
