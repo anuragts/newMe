@@ -1,9 +1,10 @@
 import { useState } from "react";
 import getId from "./getId";
 import { useRouter } from "next/router";
+import { Input,Button } from "@nextui-org/react";
 
 export default function Login() {
-    const router = useRouter();
+  const router = useRouter();
 
   const [data, setData] = useState([]);
   const id = getId();
@@ -32,7 +33,7 @@ export default function Login() {
     const y = result.id;
     const parsedUserId = y?.toString() || null;
     localStorage.setItem("userId", parsedUserId);
-    setData(parsedUserId)
+    setData(parsedUserId);
     console.log(result);
     if (response.status === 200) {
       console.log("success");
@@ -44,13 +45,33 @@ export default function Login() {
 
   return (
     <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email</label>
-        <input type="email" name="email" id="email" />
-        <label htmlFor="password">Password</label>
-        <input type="password" name="password" id="password" />
-        <button type="submit">Login</button>
+      <h1 className="text-center text-3xl my-[5rem]">Login</h1>
+      <form onSubmit={handleSubmit} className="my-5 text-center">
+        <Input
+          underlined
+          size="xl"
+          clearable
+          type="email"
+          color="default"
+          name="email"
+          placeholder="Enter your email"
+          className="my-5"
+        />{" "}
+        <br />
+        <Input.Password
+          size="xl"
+          bordered
+          clearable
+          type="password"
+          name="password"
+          placeholder="Enter your password "
+          className="my-5"
+        />
+        <div className="flex justify-center my-5">
+          <Button size="lg" type="submit">
+            Submit
+          </Button>
+        </div>{" "}
       </form>
       <p>{data}</p>
     </div>

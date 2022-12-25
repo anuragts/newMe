@@ -1,7 +1,6 @@
 import type{ NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../db/client";
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 
 export default async function login(req: NextApiRequest, res: NextApiResponse) {
   const { email, password }: { email: string; password: string } = req.body;
