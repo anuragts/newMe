@@ -51,13 +51,13 @@ const ResolutionList = () => {
     }
   };
 
-  const handleCompleted = async (id: number , userId = id ) => {
+  const handleCompleted = async (id: number, userId = id) => {
     const res = await fetch(`/api/resolution/completed/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id , userId }),
+      body: JSON.stringify({ id, userId }),
     });
     const data = await res.json();
     if (data) {
@@ -65,7 +65,7 @@ const ResolutionList = () => {
       setResolutions(newResolutions);
       window.location.reload();
     }
-  }
+  };
 
   if (userId == "" || userId == "null") {
     router.push("/login");
@@ -73,25 +73,35 @@ const ResolutionList = () => {
 
   return (
     <>
-      {resolutions.map((resolution: any) => (
-        <div key={resolution.id}>
-          <Card variant="shadow" css={{ mw: "400px" }}>
-            <Card.Body>
-              <Text >{resolution.title}</Text>
-              <Text>{resolution.description}</Text>
-            </Card.Body>
-            <Card.Divider />
-            <Row justify="flex-end">
-            <Button color={"success"} css={{ mx: "4px" , textDecoration:"bold" }} onPress={()=> handleCompleted(resolution.id)}>
-              Completed
-            </Button>
-              <Button color={"error"} css={{ mx: "4px" }} onPress={() => handleDelete(resolution.id)}>
-                Delete
-              </Button>
-            </Row>
-          </Card>
-        </div>
-      ))}
+      <div className="flex justify-center  flex-wrap flex-row">
+        {resolutions.map((resolution: any) => (
+          <div key={resolution.id} className=" my-5 mx-5">
+            <Card variant="shadow" css={{ mw: "400px" }}>
+              <Card.Body>
+                <Text size={"$2xl"} css={{textAlign:"center"}}>{resolution.title}</Text>
+                <Text>{resolution.description}</Text>
+              </Card.Body>
+              <Card.Divider />
+              <Row justify="flex-end">
+                <Button
+                  color={"success"}
+                  css={{ mx: "4px", textDecoration: "bold" }}
+                  onPress={() => handleCompleted(resolution.id)}
+                >
+                  Completed
+                </Button>
+                <Button
+                  color={"error"}
+                  css={{ mx: "4px" }}
+                  onPress={() => handleDelete(resolution.id)}
+                >
+                  Delete
+                </Button>
+              </Row>
+            </Card>
+          </div>
+        ))}
+      </div>
     </>
   );
 };
