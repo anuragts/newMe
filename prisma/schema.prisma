@@ -10,6 +10,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Subtask{
+  id Int @default(autoincrement()) @id
+  title String
+  description String
+  isCompleted Boolean? @default(false)
+  resolution Resolution @relation(fields: [resolutionId], references: [id])
+  resolutionId Int
+}
+
 model Resolution {
   id        Int      @default(autoincrement()) @id
   title     String
@@ -17,6 +26,7 @@ model Resolution {
   user      User     @relation(fields: [userId], references: [id])
   userId    Int
   isCompleted Boolean? @default(false)
+  subtasks Subtask[]
 }
 
 model User {
