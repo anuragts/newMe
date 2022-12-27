@@ -10,10 +10,18 @@ const ResolutionList = () => {
     description: string;
     userId: number;
   }
+  interface Subtask {
+    id: number;
+    title: string;
+    description: string;
+    resolutionId: number;
+  }
+
   const router = useRouter();
 
   const userId = getId();
   const [resolutions, setResolutions] = useState<Resolution[]>([]);
+  const [subtasks, setSubtasks] = useState<Subtask[]>([]);
 
   useEffect(() => {
     const fetchResolutions = async () => {
@@ -35,6 +43,25 @@ const ResolutionList = () => {
     fetchResolutions();
   }, []);
 
+  useEffect(() => {
+    const fetchSubtasks = async (resolutionId :any) => {
+      const res = await fetch("/api/subtask/getyes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ resolutionId: resolutionId }),
+      });
+      const data = await res.json();
+      if (data) {
+        setSubtasks(data);
+      }
+    };
+    if (userId != "" && userId != "null") {
+      
+    }
+  }, []);
+
 
   
 
@@ -54,6 +81,8 @@ const ResolutionList = () => {
                 <Text css={{textAlign:"center",textDecorationLine:"line-through",textDecorationColor:"$gray900"}}>{resolution.description}</Text>
               </Card.Body>
               <Card.Divider />
+              <Card.Body>
+              </Card.Body>
             </Card>
           </div>
         ))}

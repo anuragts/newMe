@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button, Card, Text, Row } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import getId from "./getId";
+import Confetti from "./Confetti";
 
 const ResolutionList = () => {
   interface Resolution {
@@ -11,9 +12,9 @@ const ResolutionList = () => {
     userId: number;
   }
   const router = useRouter();
-
   const userId = getId();
   const [resolutions, setResolutions] = useState<Resolution[]>([]);
+  const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
     const fetchResolutions = async () => {
@@ -63,8 +64,15 @@ const ResolutionList = () => {
     if (data) {
       const newResolutions = resolutions.filter((r) => r.id !== id);
       setResolutions(newResolutions);
-      window.location.reload();
     }
+  };
+
+  const handleConfettiClick = () => {
+    setShowConfetti(true);
+    setTimeout(() => {
+      setShowConfetti(false);
+      window.location.reload();
+    }, 5000);
   };
 
   if (userId == "" || userId == "null") {
@@ -78,8 +86,12 @@ const ResolutionList = () => {
           <div key={resolution.id} className=" my-5 mx-5">
             <Card variant="shadow" css={{ mw: "400px" }}>
               <Card.Body>
-                <Text size={"$2xl"} css={{textAlign:"center"}}>{resolution.title}</Text>
-                <Text css={{textAlign:"center" ,marginTop:"$5"}}>{resolution.description}</Text>
+                <Text size={"$2xl"} css={{ textAlign: "center" }}>
+                  {resolution.title}
+                </Text>
+                <Text css={{ textAlign: "center", marginTop: "$5" }}>
+                  {resolution.description}
+                </Text>
               </Card.Body>
               <Card.Divider />
               <Row justify="flex-end">
@@ -87,9 +99,11 @@ const ResolutionList = () => {
                   color={"success"}
                   css={{ mx: "4px", textDecoration: "bold" }}
                   onPress={() => handleCompleted(resolution.id)}
+                  onClick={handleConfettiClick}
                 >
                   Completed
                 </Button>
+
                 <Button
                   color={"error"}
                   css={{ mx: "4px" }}
@@ -101,6 +115,7 @@ const ResolutionList = () => {
             </Card>
           </div>
         ))}
+        {showConfetti && <Confetti />}
       </div>
     </>
   );
