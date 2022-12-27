@@ -1,7 +1,7 @@
 import { useState } from "react";
 import getId from "./getId";
 import { Input, Button } from "@nextui-org/react";
- function Createresolution() {
+function Createresolution() {
   const id = getId();
   const [data, setData] = useState([]);
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
@@ -30,34 +30,36 @@ import { Input, Button } from "@nextui-org/react";
     }
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="my-5 text-center">
-        <Input
-          bordered
-          size="lg"
-          clearable
-          name="title"
-          placeholder="Enter your title"
-          className="my-5"
-          aria-label="title"
-        />
-        <br />
-        <Input
-          bordered
-          size="lg"
-          clearable
-          name="description"
-          placeholder="Enter your description"
-          className="my-5"
-          aria-label="description"
-        />
-        <br />
-        <div className="flex justify-center my-5">
-          <Button size="lg" type="submit">
-            Submit
-          </Button>
-        </div>
-      </form>
+    <div className="flex justify-center">
+      <div>
+        <form onSubmit={handleSubmit} className="my-5 text-center w-min">
+          <Input
+            bordered
+            size="lg"
+            clearable
+            name="title"
+            placeholder="Enter your title"
+            className="my-5"
+            aria-label="title"
+          />
+          <br />
+          <Input
+            bordered
+            size="lg"
+            clearable
+            name="description"
+            placeholder="Enter your description"
+            className="my-5"
+            aria-label="description"
+          />
+          <br />
+          <div className="flex justify-center my-5">
+            <Button size="lg" type="submit">
+              Submit
+            </Button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

@@ -12,7 +12,7 @@ function LogoutButton() {
   };
 
   return (
-    <Button onClick={handleLogout} bordered color="error" size={"lg"} auto>
+    <Button onClick={handleLogout} bordered color="error" css={{margin:"$5"}} size={"lg"} auto>
       Logout
     </Button>
   );
