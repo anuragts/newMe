@@ -17,7 +17,7 @@ const ResolutionList = () => {
 
   useEffect(() => {
     const fetchResolutions = async () => {
-      const res = await fetch("/api/resolution/getall", {
+      const res = await fetch("/api/resolution/getnot", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -79,7 +79,7 @@ const ResolutionList = () => {
             <Card variant="shadow" css={{ mw: "400px" }}>
               <Card.Body>
                 <Text size={"$2xl"} css={{textAlign:"center"}}>{resolution.title}</Text>
-                <Text>{resolution.description}</Text>
+                <Text css={{textAlign:"center" ,marginTop:"$5"}}>{resolution.description}</Text>
               </Card.Body>
               <Card.Divider />
               <Row justify="flex-end">

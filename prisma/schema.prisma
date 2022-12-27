@@ -16,6 +16,7 @@ model Resolution {
   description   String
   user      User     @relation(fields: [userId], references: [id])
   userId    Int
+  isCompleted Boolean? @default(false)
 }
 
 model User {

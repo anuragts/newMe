@@ -16,5 +16,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   });
 
-  res.json(user);
-}
+  const resolutions = await prisma.resolution.findMany({
+    where: {
+    userId: userIdInt,
+    isCompleted: true,
+    }
+    });
+    
+    const completedResolutions = resolutions.length;
+    
+    res.json({ user, completedResolutions });
+    }

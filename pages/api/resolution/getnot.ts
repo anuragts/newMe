@@ -11,7 +11,9 @@ export default async function handler(
   const resolutions = await prisma.resolution.findMany({
     where: {
       userId: userIdInt,
-    },
+      isCompleted: false,
+
+    }, 
   });
   return res.status(200).json(resolutions);
 }

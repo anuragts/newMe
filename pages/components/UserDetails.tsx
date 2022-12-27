@@ -12,6 +12,7 @@ export default function UserDetails() {
 
   const userId = getId();
   const [user, setUser] = useState<User>();
+  const [completedResolutions, setCompletedResolutions] = useState<string>();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -22,10 +23,13 @@ export default function UserDetails() {
         },
         body: JSON.stringify({ userId: userId }),
       });
-      const data = await res.json();
-      if (data) {
+      const {user , completedResolutions} = await res.json();
+      if (completedResolutions){
+        setCompletedResolutions(completedResolutions);
+      }
+      if (user) {
         console.log("success");
-        setUser(data);
+        setUser(user);
       } else {
         console.log("failed");
       }
@@ -49,9 +53,11 @@ export default function UserDetails() {
                 <div>
                   <p>Username: {user.name}</p>
                   <p>Email: {user.email}</p>
-                  <p>Resolutions completed: {user.completed}</p>
                 </div>
               )}
+              <div>
+              {completedResolutions && <p>Resolutions completed: {completedResolutions}</p>}
+              </div>
             </Text>
           </Popover.Content>
         </Popover>
