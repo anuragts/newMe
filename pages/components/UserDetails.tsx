@@ -1,6 +1,7 @@
 import getId from "./getId";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Popover, Button, Text } from "@nextui-org/react";
 
 export default function UserDetails() {
   interface User {
@@ -29,19 +30,32 @@ export default function UserDetails() {
         console.log("failed");
       }
     };
-    fetchUser()
+    fetchUser();
   }, []);
 
   return (
     <div>
-      {user && (
-        <div>
-          <h1>User Details</h1>
-          <p>Name: {user.name}</p>
-          <p>Email: {user.email}</p>
-          <p>Completed: {user.completed}</p>
-        </div>
-      )}
+      <div className="float-right mx-[2rem] mt-[-2rem]">
+        <Popover isBordered >
+          <Popover.Trigger>
+            <Button auto flat>
+              Details
+            </Button>
+          </Popover.Trigger>
+          <Popover.Content css={{marginRight:"$10"}}>
+            <Text css={{ p: "$10"  }}>
+              {" "}
+              {user && (
+                <div>
+                  <p>Username: {user.name}</p>
+                  <p>Email: {user.email}</p>
+                  <p>Resolutions completed: {user.completed}</p>
+                </div>
+              )}
+            </Text>
+          </Popover.Content>
+        </Popover>
+      </div>
     </div>
   );
 }
