@@ -22,9 +22,11 @@ const ResolutionList = () => {
   const userId = getId();
   const [resolutions, setResolutions] = useState<Resolution[]>([]);
   const [subtasks, setSubtasks] = useState<Subtask[]>([]);
+  const [loading , setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchResolutions = async () => {
+      setLoading(true);
       const res = await fetch("/api/resolution/getyes", {
         method: "POST",
         headers: {
@@ -35,8 +37,10 @@ const ResolutionList = () => {
       const data = await res.json();
       if (data) {
         console.log("success");
+        setLoading(false);
         setResolutions(data);
       } else {
+        setLoading(false);
         console.log("failed");
       }
     };
@@ -73,6 +77,7 @@ const ResolutionList = () => {
     <>
         <h1 className="text-2xl text-center my-10">Completed Resolutions</h1>
       <div className="flex justify-center  flex-wrap flex-row">
+        {loading && <h1>Loading...</h1>}
         {resolutions.map((resolution: any) => (
           <div key={resolution.id} className=" my-5 mx-5">
             <Card variant="shadow" css={{ mw: "400px" }}>
