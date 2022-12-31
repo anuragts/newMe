@@ -27,6 +27,8 @@ model Resolution {
   userId    Int
   isCompleted Boolean? @default(false)
   subtasks Subtask[]
+  completeby DateTime?
+  completedAt DateTime?
 }
 
 model User {

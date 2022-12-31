@@ -9,7 +9,8 @@ export default async function create(
     title,
     description,
     userId,
-  }: { title: string; description: string; userId: string } = req.body;
+    completeby,
+  }: { title: string; description: string; userId: string ; completeby:string } = req.body;
   if (!title || !description || !userId) {
     return res.status(400).json({ message: "Missing some fields" });
   } else {
@@ -18,6 +19,7 @@ export default async function create(
       data: {
         title,
         description,
+        completeby,
         user: {
           connect: {
             id: userIdInt,  
