@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import getId from "./components/getId";
 import Createresolution from "./components/Createresolution";
-import LogoutButton from "./components/LogoutButton";
 import NotResolutionList from "./components/NotResolutionList";
 import YesResolutionList from "./components/YesResolutionList";
 import UserDetails from "./components/UserDetails";
