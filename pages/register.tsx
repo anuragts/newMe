@@ -3,6 +3,7 @@ import { Input, Button } from "@nextui-org/react";
 import React from "react";
 import { useRouter } from "next/router";
 import getId from "./components/getId";
+import LoginLoading from "./components/LoginLoading";
 
 export default function register() {
   const [loading, setLoading] = useState(false);
@@ -39,6 +40,9 @@ export default function register() {
       router.push("/login");
     }
   };
+  if (loading){
+    return <LoginLoading/>
+  }
   return (
     <div className="font-custom">
       <h1 className="text-center text-3xl my-[5rem]">Register</h1>
