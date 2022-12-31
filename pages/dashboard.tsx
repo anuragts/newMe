@@ -18,8 +18,9 @@ export default function dashboard() {
     <>
     <div className="font-custom">
       <UserDetails />
-      <h1 className="text-center text-3xl my-[5rem]">My Resolutions</h1>
+      <h1 className="text-center ml-[9rem] text-3xl my-[5rem]">My Resolutions</h1>
       <Createresolution />
+      <div className="my-[2rem]"></div>
       <NotResolutionList />
       <YesResolutionList />
     </div>
