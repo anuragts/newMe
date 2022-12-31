@@ -7,12 +7,13 @@ function LogoutButton() {
   const handleLogout = () => {
     if (typeof window !== "undefined") {
       localStorage.setItem("userId", "");
+      window.location.reload();
       router.push("/login");
     }
   };
 
   return (
-    <Button onClick={handleLogout} bordered color="error" css={{margin:"$5"}} size={"lg"} auto>
+    <Button onClick={handleLogout} bordered color="error" css={{margin:"$5"}} size={"xl"} auto>
       Logout
     </Button>
   );

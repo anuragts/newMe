@@ -1,6 +1,23 @@
 import Link from "next/link";
 import Head from "next/head";
+import { useState } from "react";
+import getId from "./getId";
+import { useEffect } from "react";
+import Log from "./Log";
 export default function Header() {
+  const [notlogged, setNotLogged] = useState(false);
+  const [logged, setLogged] = useState(false);
+  const id = getId();
+
+  useEffect(() => {
+    const id = getId();
+
+    if (id && id !== "null" && id !== "") {
+      setLogged(true);
+    } else {
+      setNotLogged(true);
+    }
+  }, []);
   return (
     <>
       <Head>
@@ -30,21 +47,8 @@ export default function Header() {
           </Link>
         </div>
       </div>
-      <div className="flex justify-end">
-        <Link
-          href={"/register"}
-          className="float-right my-4   text-[2rem]  mx-10 "
-        >
-          register
-        </Link>
-
-        <Link
-          href={"/login"}
-          className="float-right bg-primary px-20 py-2 text-secondary text-[2rem] rounded-full my-3  mx-10 "
-        >
-          login
-        </Link>
-      </div>
+      <Log />
+      
     </>
   );
 }

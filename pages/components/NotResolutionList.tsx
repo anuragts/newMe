@@ -3,6 +3,7 @@ import { Button, Card, Text, Row } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import getId from "./getId";
 import Confetti from "./Confetti";
+import Loading from "./Loading";
 
 const ResolutionList = () => {
   interface Resolution {
@@ -14,9 +15,11 @@ const ResolutionList = () => {
   const router = useRouter();
   const userId = getId();
   const [resolutions, setResolutions] = useState<Resolution[]>([]);
+  const [loading , setLoading] = useState<boolean>(false);
   const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     const fetchResolutions = async () => {
       const res = await fetch("/api/resolution/getnot", {
         method: "POST",
@@ -28,9 +31,11 @@ const ResolutionList = () => {
       const data = await res.json();
       if (data) {
         console.log("success");
+        setLoading(false);
         setResolutions(data);
       } else {
         console.log("failed");
+        setLoading(false);
       }
     };
     fetchResolutions();
@@ -82,6 +87,7 @@ const ResolutionList = () => {
   return (
     <>
       <div className="flex justify-center  flex-wrap flex-row">
+      {loading && <Loading /> }
         {resolutions.map((resolution: any) => (
           <div key={resolution.id} className=" my-5 mx-5">
             <Card variant="shadow" css={{ mw: "400px" }}>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button, Card, Text, Row } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import getId from "./getId";
+import Loading from "./Loading";
 
 const ResolutionList = () => {
   interface Resolution {
@@ -77,7 +78,7 @@ const ResolutionList = () => {
     <>
         <h1 className="text-2xl text-center my-10">Completed Resolutions</h1>
       <div className="flex justify-center  flex-wrap flex-row">
-        {loading && <h1>Loading...</h1>}
+        {loading && <Loading /> }
         {resolutions.map((resolution: any) => (
           <div key={resolution.id} className=" my-5 mx-5">
             <Card variant="shadow" css={{ mw: "400px" }}>

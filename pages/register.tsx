@@ -40,7 +40,7 @@ export default function register() {
     }
   };
   return (
-    <div>
+    <div className="font-custom">
       <h1 className="text-center text-3xl my-[5rem]">Register</h1>
       <form onSubmit={handleSubmit} className="my-5 text-center">
         <Input

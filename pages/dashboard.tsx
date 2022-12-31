@@ -5,7 +5,6 @@ import LogoutButton from "./components/LogoutButton";
 import NotResolutionList from "./components/NotResolutionList";
 import YesResolutionList from "./components/YesResolutionList";
 import UserDetails from "./components/UserDetails";
-import LeaderBoard from "./components/LeaderBoard";
 
 
 export default function dashboard() {
@@ -17,13 +16,13 @@ export default function dashboard() {
 
   return (
     <>
-      <LogoutButton />
+    <div className="font-custom">
       <UserDetails />
-      <LeaderBoard />
       <h1 className="text-center text-3xl my-[5rem]">My Resolutions</h1>
       <Createresolution />
       <NotResolutionList />
       <YesResolutionList />
+    </div>
     </>
   );
 }

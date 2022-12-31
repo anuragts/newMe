@@ -37,6 +37,7 @@ export default function Login() {
     console.log(result);
     if (response.status === 200) {
       console.log("success");
+      window.location.reload();
       router.push("/dashboard");
     } else {
       console.log("failed");
@@ -44,8 +45,8 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <h1 className="text-center text-3xl my-[5rem]">Login</h1>
+    <div className="font-custom">
+      <h1 className="text-center text-5xl my-[5rem]">Login</h1>
       <form onSubmit={handleSubmit} className="my-5 text-center">
         <Input
           underlined
@@ -71,7 +72,7 @@ export default function Login() {
           aria-label="password"
         />
         <div className="flex justify-center my-5">
-          <Button size="lg" type="submit">
+          <Button size="xl" type="submit">
             Submit
           </Button>
         </div>{" "}

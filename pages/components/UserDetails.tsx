@@ -2,6 +2,7 @@ import getId from "./getId";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Popover, Button, Text } from "@nextui-org/react";
+import Loading from "./Loading";
 
 export default function UserDetails() {
   interface User {
@@ -13,9 +14,12 @@ export default function UserDetails() {
   const userId = getId();
   const [user, setUser] = useState<User>();
   const [completedResolutions, setCompletedResolutions] = useState<string>();
+  const [loading , setLoading] = useState<boolean>(false);
+
 
   useEffect(() => {
     const fetchUser = async () => {
+      setLoading(true);
       const res = await fetch("/api/user/details", {
         method: "POST",
         headers: {
@@ -30,8 +34,10 @@ export default function UserDetails() {
       if (user) {
         console.log("success");
         setUser(user);
+        setLoading(false);
       } else {
         console.log("failed");
+        setLoading(false);
       }
     };
     fetchUser();
@@ -39,7 +45,7 @@ export default function UserDetails() {
 
   return (
     <div>
-      <div className="float-right mx-[2rem] mt-[-2rem]">
+      <div className="float-right mx-[2rem] mt-[-2rem] font-custom">
         <Popover isBordered >
           <Popover.Trigger>
             <Button auto flat>
@@ -49,14 +55,15 @@ export default function UserDetails() {
           <Popover.Content css={{marginRight:"$10"}}>
             <Text css={{ p: "$10"  }}>
               {" "}
+              {loading && <Loading /> }
               {user && (
-                <div>
+                <div className="font-custom">
                   <p>Username: {user.name}</p>
                   <p>Email: {user.email}</p>
                 </div>
               )}
               <div>
-              {completedResolutions && <p>Resolutions completed: {completedResolutions}</p>}
+              {completedResolutions && <p className="font-custom">Resolutions completed: {completedResolutions}</p>}
               </div>
             </Text>
           </Popover.Content>
