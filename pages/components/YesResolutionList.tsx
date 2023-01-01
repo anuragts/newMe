@@ -23,7 +23,7 @@ const ResolutionList = () => {
   const userId = getId();
   const [resolutions, setResolutions] = useState<Resolution[]>([]);
   const [subtasks, setSubtasks] = useState<Subtask[]>([]);
-  const [loading , setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchResolutions = async () => {
@@ -49,7 +49,7 @@ const ResolutionList = () => {
   }, []);
 
   useEffect(() => {
-    const fetchSubtasks = async (resolutionId :any) => {
+    const fetchSubtasks = async (resolutionId: any) => {
       const res = await fetch("/api/subtask/getyes", {
         method: "POST",
         headers: {
@@ -63,41 +63,66 @@ const ResolutionList = () => {
       }
     };
     if (userId != "" && userId != "null") {
-      
     }
   }, []);
-
-
-  
 
   if (userId == "" || userId == "null") {
     router.push("/login");
   }
-  if (resolutions.length == 0 ){
+  if (resolutions.length == 0) {
     return (
       <>
         <h1 className="text-2xl text-center my-10">Completed Resolutions</h1>
         <div className="flex justify-center ">
-          <Text size={"$2xl"} color="" className="font-bold text-primary">No Completed Resolutions ... </Text>
+          <Text size={"$2xl"} color="" className="font-bold text-primary">
+            No Completed Resolutions ...{" "}
+          </Text>
         </div>
       </>
     );
   }
   return (
     <>
-        <h1 className="text-2xl text-center my-10">Completed Resolutions</h1>
+      <h1 className="text-2xl text-center my-10">Completed Resolutions</h1>
       <div className="flex justify-center  flex-wrap flex-row">
-        {loading && <Loading /> }
+        {loading && <Loading />}
         {resolutions.map((resolution: any) => (
           <div key={resolution.id} className=" my-5 mx-5">
             <Card variant="shadow" css={{ mw: "400px" }}>
               <Card.Body>
-                <Text size={"$2xl"} css={{textAlign:"center",marginLeft:"$10",paddingLeft:"$10",paddingRight:"$10", marginRight:"$10", textDecorationLine:"line-through" ,textDecorationColor:"$gray900",textDecorationStyle:"solid" }}>{resolution.title}</Text>
-                <Text css={{textAlign:"center",textDecorationLine:"line-through",textDecorationColor:"$gray900"}}>{resolution.description}</Text>
+                <Text
+                  size={"$2xl"}
+                  css={{
+                    textAlign: "center",
+                    marginLeft: "$10",
+                    paddingLeft: "$10",
+                    paddingRight: "$10",
+                    marginRight: "$10",
+                    textDecorationLine: "line-through",
+                    textDecorationColor: "$gray900",
+                    textDecorationStyle: "solid",
+                  }}
+                >
+                  {resolution.title}
+                </Text>
+                <Text
+                  css={{
+                    textAlign: "center",
+                    textDecorationLine: "line-through",
+                    textDecorationColor: "$gray900",
+                  }}
+                >
+                  {resolution.description}
+                </Text>
               </Card.Body>
               <Card.Divider />
               <Card.Body>
-                <Text css={{textAlign:"center"}}>Compeleted At - {resolution.completedAt?.slice(0,10)}</Text>
+                <Text css={{ textAlign: "center" }}>
+                  {/* display reverse */}
+                  Compeleted At - {resolution.completedAt?.slice(8, 10)}/
+                  {resolution.completedAt?.slice(5, 7)}/
+                  {resolution.completedAt?.slice(2, 4)}
+                </Text>
               </Card.Body>
             </Card>
           </div>
